@@ -1,0 +1,80 @@
+﻿BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [Personagens] ADD [FotoPersonagem] varbinary(max) NULL;
+GO
+
+ALTER TABLE [Personagens] ADD [UsuarioId] int NULL;
+GO
+
+CREATE TABLE [TB_Disputas] (
+    [Id] int NOT NULL IDENTITY,
+    [Dt_Disputa] datetime2 NULL,
+    [AtacanteId] int NOT NULL,
+    [OponenteId] int NOT NULL,
+    [Tx_Narracao] nvarchar(max) NULL,
+    CONSTRAINT [PK_TB_Disputas] PRIMARY KEY ([Id])
+);
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 1;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 2;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 3;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 4;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 5;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 6;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Personagens] SET [FotoPersonagem] = NULL, [UsuarioId] = NULL
+WHERE [Id] = 7;
+SELECT @@ROWCOUNT;
+
+GO
+
+UPDATE [Usuarios] SET [PasswordHash] = 0xAC02EBDE66B7DE3A11DD775453962AC3EC34FBFE936ED70B37033215DF0A0C5DA9F1A0BAA0F3CD20B86872D35F12FD9E1B521751461E5B1AA2E2CF9CE0D1143C, [PasswordSalt] = 0xBB2E4313790B78533BB04E600FA34E3666331E157DB54F6996810B4C28DB4D5B183DEB2E376B8CCA28BA5894C3A4EC189793C5B4D7CA57DC4EF59FFDBE84E887234E2743F80E8670A3E5D0AAB3027E1EF43C9750E130B452BBE4B5AA7A5CE25330288B652AA48ED461454B3D5EDC53E7A223BFBCAD3D14E44ACDB6EBB0C65F54
+WHERE [Id] = 1;
+SELECT @@ROWCOUNT;
+
+GO
+
+CREATE INDEX [IX_Personagens_UsuarioId] ON [Personagens] ([UsuarioId]);
+GO
+
+ALTER TABLE [Personagens] ADD CONSTRAINT [FK_Personagens_Usuarios_UsuarioId] FOREIGN KEY ([UsuarioId]) REFERENCES [Usuarios] ([Id]);
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20230730170743_MigracaoUsuario', N'7.0.4');
+GO
+
+COMMIT;
+GO
+
