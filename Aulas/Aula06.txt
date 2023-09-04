@@ -1,0 +1,10 @@
+- Após criar o banco de dados, rodar o comando abaixo para criar o script final da API.
+
+dotnet ef migrations script -o ./scriptFinal.sql
+
+- Após o término do PDF da aula 06 acessar o Somee: (revisar nos PDFs sobre banco de dados e deploy no somee)
+
+ * Entrar na área de banco de dados e remover o banco (se ainda existir)
+ * Criar um novo banco e rodar o arquivo scriptFinal.sql
+ * Copiar a string de conexão e colar na chave ConexaoSomee arquivo appSettings.json
+ * Gerar uma publicação e postas no somee.
